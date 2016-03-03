@@ -4,7 +4,7 @@
 #
 Name     : rubygem-cells
 Version  : 3.11.3
-Release  : 4
+Release  : 5
 URL      : https://rubygems.org/downloads/cells-3.11.3.gem
 Source0  : https://rubygems.org/downloads/cells-3.11.3.gem
 Summary  : No detailed summary available
@@ -13,6 +13,7 @@ License  : MIT
 BuildRequires : ruby
 BuildRequires : rubygem-actionpack
 BuildRequires : rubygem-activemodel
+BuildRequires : rubygem-bundler
 BuildRequires : rubygem-capybara
 BuildRequires : rubygem-haml
 BuildRequires : rubygem-minitest
@@ -38,23 +39,24 @@ gem spec %{SOURCE0} -l --ruby > rubygem-cells.gemspec
 gem build rubygem-cells.gemspec
 
 %install
-gem_dir=$(ruby -e'puts Gem.default_dir')
+%global gem_dir $(ruby -e'puts Gem.default_dir')
 gem install -V \
 --local \
 --force \
---install-dir .${gem_dir} \
+--install-dir .%{gem_dir} \
 --bindir .%{_bindir} \
 cells-3.11.3.gem
 
-mkdir -p %{buildroot}${gem_dir}
-cp -pa .${gem_dir}/* \
-%{buildroot}${gem_dir}
+mkdir -p %{buildroot}%{gem_dir}
+cp -pa .%{gem_dir}/* \
+%{buildroot}%{gem_dir}
 
 if [ -d .%{_bindir} ]; then
 mkdir -p %{buildroot}%{_bindir}
 cp -pa .%{_bindir}/* \
 %{buildroot}%{_bindir}/
 fi
+
 
 %files
 %defattr(-,root,root,-)
