@@ -4,7 +4,7 @@
 #
 Name     : rubygem-cells
 Version  : 4.0.4
-Release  : 7
+Release  : 8
 URL      : https://rubygems.org/downloads/cells-4.0.4.gem
 Source0  : https://rubygems.org/downloads/cells-4.0.4.gem
 Summary  : No detailed summary available
